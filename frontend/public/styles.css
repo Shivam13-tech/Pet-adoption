@@ -1,0 +1,30 @@
+body{
+    background-color: #A6E3E9;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+    color: #1A1A40;
+    
+  }
+  
+.centered {
+    position: absolute;
+    top: 20%;
+    left: 8%;
+  }
+
+ .bodyInfo{
+     font-size: 35px;
+     font-family: cursive;
+ } 
+
+ .steps{
+   font-family: cursive;
+   text-align: center;
+   font-style: italic;
+   font-weight: 400;
+ }
+
+ 
