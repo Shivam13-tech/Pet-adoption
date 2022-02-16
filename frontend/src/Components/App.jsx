@@ -17,21 +17,21 @@ import Dog from './See-dog/Dog';
 
 function App(){
 
-    const state = useSelector(function(state){
-        return (
-            state.account
-        )
-    })
-    console.log(state);
-    const dispatch = useDispatch();
+    // const state = useSelector(function(state){
+    //     return (
+    //         state.account
+    //     )
+    // })
+    // console.log(state);
+    // const dispatch = useDispatch();
     
-    const {depositMoney} = bindActionCreators( actionCreators, dispatch);
+    // const {depositMoney} = bindActionCreators( actionCreators, dispatch);
     // console.log(AC);
     return (
         <div>
-            <button onClick={function(){
+            {/* <button onClick={function(){
                 depositMoney(1000)
-            }}></button>
+            }}></button> */}
         <Router>
             <Navbar />
             <Routes>
