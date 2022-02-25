@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import puppy from "../../images/puppy.jpg"
 import axios from "axios";
 
 
@@ -9,141 +8,64 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
 function Dog(){
-    const [dog, setDog] = useState([])
+    const [dog, setDog] = useState({
+        info: []
+    })
     useEffect(async function(){
-        const response = await axios.get('http://127.0.0.1:8000/api/v1/pet');
-        console.log(response.data.data.result)
-        setDog(response.data.data.result)
+        const response = await axios.get('http://127.0.0.1:8000/api/v1/pet', {
+            headers:{
+                'x-auth-token': localStorage.getItem('Token')
+            }
+        });
+        // const base64String = btoa(String.fromCharCode(...new Uint8Array(response.data.data.result[0].img.data.data)));
+        setDog(function(prevValue){
+            return {
+                info: response.data.data.result
+            }
+        })
+        // function random(){
+        //     dog.info.map(function(item){
+        //         console.log(btoa(String.fromCharCode(...new Uint8Array(item.img.data.data))));
+        //     })
+        // }
+        // random()
     },[])
-
+    
     return (
     <div style={{display: 'flex', flexWrap: 'wrap'}}>
-        {dog.map(function(item){
-            return (
-                <div style={{margin: '15px'}}>
-                <Card sx={{ maxWidth: 345 }}>
-                    <CardMedia
-                        component="img"
-                        height="140"
-                        image={puppy}
-                        alt="green iguana"
-                    />
-                <CardContent>
-                    <Typography gutterBottom variant="h5" component="div">
-                        {item.name}--{item.breed}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {item.about}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {item.email}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {item.location}
-                    </Typography>
-                </CardContent>
-                </Card>
-            </div>
-            )   
-        })}
-        {/* <div style={{margin: '15px'}}>
-    <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-            component="img"
-            height="140"
-            image={puppy}
-            alt="green iguana"
-            />
-      <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-                Dog Name -- Dog Breed
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                About Dog: skjdnfkcjsdnkfcjsdnkjfnkjdsnfk<br /> jsdnflndslfnldsnfkdsjsdfsdfsdfsdfsdsd
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                Owner Email
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                Owner Location
-            </Typography>
-      </CardContent>
-    </Card>
-        </div>
-        <div style={{margin: '15px'}}>
-    <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-            component="img"
-            height="140"
-            image={puppy}
-            alt="green iguana"
-            />
-      <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-                Dog Name -- Dog Breed
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                About Dog: skjdnfkcjsdnkfcjsdnkjfnkjdsnfk<br /> jsdnflndslfnldsnfkdsjsdfsdfsdfsdfsdsd
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                Owner Email
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                Owner Location
-            </Typography>
-      </CardContent>
-    </Card>
-        </div>
-        <div style={{margin: '15px'}}>
-    <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-            component="img"
-            height="140"
-            image={puppy}
-            alt="green iguana"
-            />
-      <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-                Dog Name -- Dog Breed
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                About Dog: skjdnfkcjsdnkfcjsdnkjfnkjdsnfk<br /> jsdnflndslfnldsnfkdsjsdfsdfsdfsdfsdsd
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                Owner Email
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                Owner Location
-            </Typography>
-      </CardContent>
-    </Card>
-        </div>
-        <div style={{margin: '15px'}}>
-    <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-            component="img"
-            height="140"
-            image={puppy}
-            alt="green iguana"
-            />
-      <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
-                Dog Name -- Dog Breed
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                About Dog: skjdnfkcjsdnkfcjsdnkjfnkjdsnfk<br /> jsdnflndslfnldsnfkdsjsdfsdfsdfsdfsdsd
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                Owner Email
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-                Owner Location
-            </Typography>
-      </CardContent>
-    </Card>
-        </div> */}
+        {dog.info.map(function(item){ 
+             return ( 
+                <div style={{margin: '15px'}} id={item.id}> 
+                                        <div>
+                                            <Card>
+                                                <CardMedia
+                                                    component="img"
+                                                    height="140"
+                                                    image={`data:image/png;base64, ${btoa(String.fromCharCode(...new Uint8Array(item.img.data.data)))}`}     //Converts buffer data to base64 so it can be used as image
+                                                    alt="green iguana"
+                                                />
+                                                <CardContent>
+                                                    <Typography gutterBottom variant="h5" component="div">
+                                                        {item.name}--{item.breed}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="text.secondary">
+                                                        {item.about}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="text.secondary">
+                                                        {item.email}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="text.secondary">
+                                                        {item.location}
+                                                    </Typography>
+                                                </CardContent>
+                                             </Card>
+                                        </div>
+                 </div> 
+                   )  
+               })}
     </div>
-    )
-}
+       )
+    }
+
 
 export default Dog;

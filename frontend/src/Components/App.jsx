@@ -15,6 +15,7 @@ import Post from './Post-dog/Post';
 import Dog from './See-dog/Dog';
 
 
+
 function App(){
 
     // const state = useSelector(function(state){
@@ -41,10 +42,10 @@ function App(){
                     <Use />
                 </div>
                 } />
-                <Route path="/Login" element={<Login />} />
-                <Route path="/Signup" element={<Signup />} />
-                <Route path="/Post-Dog" element={<Post />} />
-                <Route path="/Dog-World" element={<Dog />} />
+                <Route path="/Login" exact element={<Login />} />
+                <Route path="/Signup" exact element={<Signup />} />
+                <Route path="/Post-Dog" exact element={<Post />} />
+                <Route path="/Dog-World" exact element={<Dog />} />
             </Routes>
         </Router>
         </div>

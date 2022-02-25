@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import dog from "../../images/dog.png"
+import dog from "../../images/dog.jpg"
 import Button from '@mui/material/Button';
 
 function Body(){
