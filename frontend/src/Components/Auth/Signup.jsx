@@ -51,7 +51,7 @@ function Signup(){
             navigate('/')
             window.location.reload(false);
         }).catch(function(err){
-            console.log(err);
+            alert('Something went wrong !! Try again')
         })
         setData(function(prevValue){
             return {

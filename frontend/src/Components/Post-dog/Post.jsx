@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import TextField from '@mui/material/TextField';
@@ -7,6 +8,7 @@ import Button from '@mui/material/Button';
 
 
 function Post(){
+    let navigate = useNavigate();
     const[data, setData] = useState({
         name: '',
         breed: '',
@@ -78,34 +80,6 @@ function Post(){
         })
         // console.log(data)
     }
-    
-    // function handleClick(event){
-    //     event.preventDefault()
-    //     const formData = new FormData();
-    //     formData.append('photo', data.photo);
-    //     axios.post('http://127.0.0.1:8000/api/v1/pet', {
-    //             name: data.name,
-    //             breed: data.breed,
-    //             photo: formData,
-    //             about: data.about,
-    //             email: data.email,
-    //             location: data.location,
-    //     }).then(function(response){
-    //         console.log(response)
-    //     }).catch(function(err){
-    //         console.log(err)
-    //     })
-    //     setData(function(){
-    //         return {
-    //             name: '',
-    //             breed: '',
-    //             photo: null,
-    //             about: '',
-    //             email: '',
-    //             location: '',
-    //         }
-    //     })
-    // }
 
     function handleClick(event){
         event.preventDefault();
@@ -137,21 +111,24 @@ function Post(){
                 location: '',
             }
         })
+        navigate('/Dog-World')
+        window.location.reload(false);
     }
     return (
         <div>
             <form style={{textAlign: 'center', margin: '20px'}}>
-             <TextField id="outlined-basic" onChange={handleChange} label="Dog Name" variant="outlined" name="Name" value={data.name} autoComplete='off' style={{margin: '10px'}}/>
+            <label className="lab">Add Dog photo</label>
+             <TextField fullWidth id="outlined-basic" onChange={handleChange} type="file" accept=".pnj, .jpg, .jpeg"   variant="outlined"  name="photo" autoComplete='off' style={{margin: '10px'}}/>
              <br />
-             <TextField id="outlined-basic" onChange={handleChange} label="Dog Breed" variant="outlined" name="Breed" value={data.breed} autoComplete='off' style={{margin: '10px'}}/>
+             <TextField fullWidth id="outlined-basic" onChange={handleChange} label="Dog Name" variant="outlined" name="Name" value={data.name} autoComplete='off' style={{margin: '10px'}}/>
              <br />
-             <TextField id="outlined-basic" onChange={handleChange} type="file" accept=".pnj, .jpg, .jpeg"  label="Dog Photo" variant="outlined"  name="photo" autoComplete='off' style={{margin: '10px'}}/>
+             <TextField fullWidth id="outlined-basic" onChange={handleChange} label="Dog Breed" variant="outlined" name="Breed" value={data.breed} autoComplete='off' style={{margin: '10px'}}/>            
              <br />
-             <TextField id="outlined-basic" onChange={handleChange} label="About Dog" variant="outlined" name="About" value={data.about} autoComplete='off' style={{margin: '10px'}}/>
+             <TextField fullWidth id="outlined-basic" onChange={handleChange} label="About Dog" variant="outlined" name="About" value={data.about} autoComplete='off' style={{margin: '10px'}}/>
              <br />
-             <TextField id="outlined-basic" onChange={handleChange} label="Owner Email" variant="outlined" name="Email" value={data.email} autoComplete='off' style={{margin: '10px'}}/>
+             <TextField fullWidth id="outlined-basic" onChange={handleChange} label="Owner Email" variant="outlined" name="Email" value={data.email} autoComplete='off' style={{margin: '10px'}}/>
              <br />
-             <TextField id="outlined-basic" onChange={handleChange} label="Location" variant="outlined" name="Location" value={data.location} autoComplete='off' style={{margin: '10px'}}/>
+             <TextField fullWidth id="outlined-basic" onChange={handleChange} label="Location" variant="outlined" name="Location" value={data.location} autoComplete='off' style={{margin: '10px'}}/>
              <br />
              <Button onClick={handleClick} style={{  backgroundColor: "#71C9CE", margin: '10px'}} variant="contained">
                 Post 

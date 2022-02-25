@@ -41,7 +41,8 @@ function Login(){
             navigate('/')
             window.location.reload(false);
         }).catch(function(err){
-            console.log(err);
+            // console.log('Hemloooooooo',err);
+            alert('Invalid Credential! Try Again..')
         })
         setData(function(prevValue){
             return {

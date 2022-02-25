@@ -31,7 +31,7 @@ exports.userLogin = async function(req,res){
             jwt.sign(                                     //Takes 3 things 1.payload 2.secret 3. extra options
                 payload,   
                 "mysecrettoken",
-                { expiresIn: 36000 },
+                { expiresIn: 3600 },
                 function(err,token){                     //A call back fnc if err give error else we send the user created and the token
                     if(err){
                         console.log(err);

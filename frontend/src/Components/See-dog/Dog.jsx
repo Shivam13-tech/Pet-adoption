@@ -7,6 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 
+
 function Dog(){
     const [dog, setDog] = useState({
         info: []
@@ -34,28 +35,32 @@ function Dog(){
     return (
     <div style={{display: 'flex', flexWrap: 'wrap'}}>
         {dog.info.map(function(item){ 
-             return ( 
-                <div style={{margin: '15px'}} id={item.id}> 
+            return ( 
+                <div style={{margin: '15px'}} key={item._id}> 
                                         <div>
                                             <Card>
                                                 <CardMedia
+                                                    style={{ width: 220}}
                                                     component="img"
-                                                    height="140"
-                                                    image={`data:image/png;base64, ${btoa(String.fromCharCode(...new Uint8Array(item.img.data.data)))}`}     //Converts buffer data to base64 so it can be used as image
+                                                    height="135"
+                                                    image = {`data:image/png;base64, ${btoa(String.fromCharCode(...new Uint8Array(item.img.data.data)))}`}     //Converts buffer data to base64 so it can be used as image
                                                     alt="green iguana"
                                                 />
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div">
-                                                        {item.name}--{item.breed}
+                                                       {item.name}
                                                     </Typography>
                                                     <Typography variant="body2" color="text.secondary">
-                                                        {item.about}
+                                                        Breed: {item.breed}
                                                     </Typography>
                                                     <Typography variant="body2" color="text.secondary">
-                                                        {item.email}
+                                                        About: {item.about}
                                                     </Typography>
                                                     <Typography variant="body2" color="text.secondary">
-                                                        {item.location}
+                                                        Email: {item.email}
+                                                    </Typography>
+                                                    <Typography variant="body2" color="text.secondary">
+                                                        Location: {item.location}
                                                     </Typography>
                                                 </CardContent>
                                              </Card>

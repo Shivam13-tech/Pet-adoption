@@ -28,4 +28,13 @@ body{
    font-weight: 400;
  }
 
- 
+.lab{
+  font-family: cursive;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.card{
+  min-width: 900;
+  max-width: 900;
+}
